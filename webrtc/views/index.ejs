@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Chat App</title>
+  <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script defer src="script.js"></script>
+  <style>
+    body,html{
+      height: 100%;
+    }
+    body{
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      position:absolute;
+    }
+    #room-container{
+      padding-top: 3%;
+    }
+    .rname{
+      text-align: center;
+      color: #ffb23a;
+      font-size: x-large;
+    }
+	a {
+      text-align: center;
+	  display:block;
+	}
+    a:hover{
+      color: #91e7ff;
+    }
+    #form1{
+      padding-top: 0.5%;
+      width:200px;
+	  margin-left:auto;
+	  margin-right:auto;
+    }
+    input{
+      text-align: center;
+      color: #ff213f;
+	  width:100%;
+    }
+    .newR{
+      margin-top: 2%;
+      margin-left: auto;
+	  margin-right:auto;
+	  display:block;
+    }
+
+  </style>
+</head>
+<body>
+<div id="room-container">
+    <% Object.keys(rooms).forEach(room => { %>
+      <div class="rname"><strong><%= room %></strong></div>
+      <a href="/<%= room %>"><strong>Join</strong></a>
+    <% }) %>
+  </div>
+  <form id="form1" action="/room" method="POST">
+    <input name="room" type="text" required>
+    <br/>
+    <button class="newR" type="submit"><strong>New Room</strong></button>
+  </form>
+</body>
+</html>
